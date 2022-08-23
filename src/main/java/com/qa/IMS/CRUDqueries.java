@@ -137,6 +137,7 @@ public class CRUDqueries {
 
 	}
 	
+	//Resets the auto increment in the customer table so ID's are organised if a customer is deleted.
 	public void autoInc() {
 		String autoIncStmt = "ALTER TABLE customer AUTO_INCREMENT=1;";
 		try {
@@ -150,6 +151,19 @@ public class CRUDqueries {
 
 	}
 	
+	public void create(Product p) {
+		
+		String createStmt = "INSERT INTO product(name, category, price) VALUES('" + p.getName() + "','" + p.getCategory()
+		+ "'," + p.getPrice() + ");";
+		try {
+			stmt.executeUpdate(createStmt);
+			System.out.println("Create statement executed");
+		} catch (SQLException e) {
+			System.out.println("Bad query");
+			e.printStackTrace();
+		}
+	}
+	
 
 	// close the connection
 	public void closeConn() {
@@ -161,5 +175,7 @@ public class CRUDqueries {
 			e.printStackTrace();
 		}
 	}
+
+
 
 }
