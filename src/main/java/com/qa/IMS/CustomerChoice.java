@@ -2,17 +2,13 @@ package com.qa.IMS;
 
 import java.util.Scanner;
 
-public class Choice {
+public class CustomerChoice extends ParentClass {
 
 	private static Scanner sc = new Scanner(System.in);
 	Customer cust = new Customer();
-
-	public String getInput() {
-		System.out.println("Enter CRUD choice: ");
-		return sc.nextLine();
-	}
 	
-	public void createCustomer(CRUDqueries q) {
+	@Override
+	public void create(CRUDqueries q) {
 		System.out.println("Enter first name: ");
 		String fName = sc.nextLine();
 		cust.setFirstName(fName);
@@ -32,7 +28,8 @@ public class Choice {
 		
 	}
 	
-	public void readCustomer(CRUDqueries q) {
+	@Override
+	public void read(CRUDqueries q) {
 		System.out.println("1. Read all\n2. Read by id\n3. Read by name");
 		String readChoice = sc.nextLine();
 		if (readChoice.toLowerCase().equals("1")) {
@@ -55,7 +52,8 @@ public class Choice {
 		
 	}
 	
-	public void updateCustomer(CRUDqueries q) {
+	@Override
+	public void update(CRUDqueries q) {
 		System.out.println("Enter id of record to update: ");
 		int uID = sc.nextInt();
 		cust.setId(uID);
@@ -65,8 +63,9 @@ public class Choice {
 		q.update(cust, uName);	
 		
 	}
-	
-	public void deleteCustomer(CRUDqueries q) {
+
+	@Override
+	public void delete(CRUDqueries q) {
 		System.out.println("Enter id of record to delete: ");
 		int dID = sc.nextInt();
 		sc.nextLine();//capture enter key
@@ -75,51 +74,5 @@ public class Choice {
 		
 	}
 	
-	
-	public void options() {
-		// create an instance of the CRUD queries class to open the connection
-		CRUDqueries q = new CRUDqueries();
-		
-		String crud = getInput();
-
-		// try-finally block so the finally block can close the connection
-		try {
-			// do-while loop to start the loop and present the options to interact with the
-			// database
-			do {
-				switch (crud.toLowerCase()) {
-				case "create":
-					createCustomer(q);
-					break;
-				case "read":
-					readCustomer(q);
-					break;
-				case "update":
-					updateCustomer(q);
-					break;
-				case "delete":
-					deleteCustomer(q);
-					break;
-				default:
-					System.out.println("Invalid CRUD choice");
-				}
-				// check if user wants to continue or break out of the loop
-				System.out.println("\nWould you like to continue? (y/n)");
-				String quit = sc.nextLine();
-				if (quit.toLowerCase().equals("y")) {
-					crud = getInput();
-				} else if (quit.toLowerCase().equals("n")) {
-					crud = "quit";
-				} else {
-					System.out.println("Please enter 'y' or 'n'");
-				}
-
-			} while (!crud.equals("quit"));
-			System.out.println("Goodbye!");
-		} finally {
-			q.closeConn();
-		}
-
-	}
 
 }

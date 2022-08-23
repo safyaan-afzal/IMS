@@ -6,7 +6,7 @@ public class Menu {
 	
 	private static Scanner sc = new Scanner(System.in);
 	
-	public String getMenuInput() {
+	public String getMenuOption() {
 		System.out.println("\nEnter [1] for access to Customer records \nOR\nEnter [2] for access to Product records");
 		return sc.nextLine();
 	}
@@ -14,15 +14,15 @@ public class Menu {
 	
 	public void displayMenu() {
 
-			String menuOption = getMenuInput();
+			String menuOption = getMenuOption();
 			
 			switch (menuOption) {
 			case "1":
-				Choice start = new Choice();
-				start.options();
+				CustomerChoice startCust = new CustomerChoice();
+				startCust.options();
 				break;
 			case "2":
-				ChoiceProducts startAlt = new ChoiceProducts();
+				ProductChoice startAlt = new ProductChoice();
 				startAlt.options();
 				break;
 			default:
