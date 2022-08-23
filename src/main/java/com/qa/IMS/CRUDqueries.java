@@ -8,13 +8,6 @@ import java.sql.Statement;
 
 public class CRUDqueries implements Create, Update, Delete {
 
-	// To carry out CRUD queries - where we connect to the the db
-	// Four main things needed:
-	// - open the connection
-	// - write your query/statement - CRUD
-	// - Execute query.
-	// - close connection
-
 	private Connection conn;// has a driver manager class which contains the methods to connect to db
 	private Statement stmt;// allows us to prepare the query we want to execute
 	private ResultSet rs; // Crucial for when returning multiple rows from a database table
