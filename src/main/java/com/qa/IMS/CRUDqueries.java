@@ -51,28 +51,8 @@ public class CRUDqueries {
 			}
 		}
 	
-	// READ - SELECT ..... -> executeQuery
-	public void read() {
-		String readStmt = "SELECT * FROM customer;";
-		try {
-			rs = stmt.executeQuery(readStmt);
-			while (rs.next()) {
-				System.out.println("ID: " + rs.getInt("id"));
-				System.out.println("First name: " + rs.getString("first_name"));
-				System.out.println("Last name: " + rs.getString("last_name"));
-				System.out.println("Address: " + rs.getString("address"));
-				System.out.println("Email: " + rs.getString("email"));
-				System.out.println("Phone: " + rs.getString("phone"));
-			}
-
-		} catch (SQLException e) {
-			System.out.println("Bad query");
-			e.printStackTrace();
-		}
-	}
 	
-	public void readById(Customer c) {
-		String readByIDStmt = "SELECT * FROM customer where id = " + c.getId() + ";";
+	public void printData(String readByIDStmt) {
 		try {
 			rs = stmt.executeQuery(readByIDStmt);
 			while (rs.next()) {
@@ -90,23 +70,17 @@ public class CRUDqueries {
 		}
 	}
 	
+	// READ - SELECT ..... -> executeQuery
+	public void read() {
+		printData("SELECT * FROM customer;");
+	}
+	
+	public void readById(Customer c) {
+		printData("SELECT * FROM customer where id = " + c.getId() + ";");
+	}
+	
 	public void readByName(Customer c) {
-		String readByNameStmt = "SELECT * FROM customer where first_name = '" + c.getFirstName() + "';";
-		try {
-			rs = stmt.executeQuery(readByNameStmt);
-			while (rs.next()) {
-				System.out.println("ID: " + rs.getInt("id"));
-				System.out.println("First name: " + rs.getString("first_name"));
-				System.out.println("Last name: " + rs.getString("last_name"));
-				System.out.println("Address: " + rs.getString("address"));
-				System.out.println("Email: " + rs.getString("email"));
-				System.out.println("Phone: " + rs.getString("phone"));
-			}
-
-		} catch (SQLException e) {
-			System.out.println("Bad query");
-			e.printStackTrace();
-		}
+		printData("SELECT * FROM customer where first_name = '" + c.getFirstName() + "';");
 	}
 	
 	// UPDATE - UPDATE ..... -> executeUpdate
