@@ -129,7 +129,21 @@ public class CRUDqueries {
 		try {
 			stmt.executeUpdate(delStmt);
 			System.out.println("Delete statement executed");
+			autoInc();
 		} catch (SQLException e) {
+			System.out.println("Bad query");
+			e.printStackTrace();
+		}
+
+	}
+	
+	public void autoInc() {
+		String autoIncStmt = "ALTER TABLE customer AUTO_INCREMENT=1;";
+		try {
+			stmt.executeUpdate(autoIncStmt);
+			System.out.println("Auto increment statement executed");
+			
+		}catch (SQLException e) {
 			System.out.println("Bad query");
 			e.printStackTrace();
 		}
