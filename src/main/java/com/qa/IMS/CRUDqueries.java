@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class CRUDqueries implements Create, Update, Delete {
 
@@ -34,30 +35,29 @@ public class CRUDqueries implements Create, Update, Delete {
 		}
 	}
 
+	
 	@Override
 	public void create(Customer c) {
 
 			updateData("INSERT INTO customer(first_name, last_name, address, email, phone) VALUES('" + c.getFirstName() + "','" + c.getLastName()
-					+ "','" + c.getAddress() + "','" + c.getEmail() + "','" + c.getPhone() + "');", "create");
+					+ "','" + c.getEmail() + "','" + c.getAddress() + "','" + c.getPhone() + "');", "create");
 		}
-	
 	@Override
 	public void create(Product p) {
 		
 		updateData("INSERT INTO product(name, category, price) VALUES('" + p.getName() + "','" + p.getCategory()
 		+ "'," + p.getPrice() + ");", "create");
 	}
+	
 
-	public void printData(String readByIDStmt) {
+	public void printProdData(String readByIDStmt) {
 		try {
 			rs = stmt.executeQuery(readByIDStmt);
 			while (rs.next()) {
 				System.out.println("ID: " + rs.getInt("id"));
-				System.out.println("First name: " + rs.getString("first_name"));
-				System.out.println("Last name: " + rs.getString("last_name"));
-				System.out.println("Address: " + rs.getString("address"));
-				System.out.println("Email: " + rs.getString("email"));
-				System.out.println("Phone: " + rs.getString("phone"));
+				System.out.println("Name: " + rs.getString("name"));
+				System.out.println("Category: " + rs.getString("category"));
+				System.out.println("Price: " + rs.getBigDecimal("price"));
 			}
 
 		} catch (SQLException e) {
@@ -66,47 +66,71 @@ public class CRUDqueries implements Create, Update, Delete {
 		}
 	}
 	
-	// READ - SELECT ..... -> executeQuery
-	public void read() {
-		printData("SELECT * FROM customer;");
+	public void printCustData(String readByIDStmt) {
+		try {
+			rs = stmt.executeQuery(readByIDStmt);
+			ArrayList<Customer> customerList = new ArrayList<>();
+			while (rs.next()) {
+				Customer customer = new Customer(rs.getInt("id"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("email"), rs.getString("address"), rs.getString("phone"));
+				customerList.add(customer);
+			}
+			
+			System.out.println(customerList);
+
+		} catch (SQLException e) {
+			System.out.println("Bad query");
+			e.printStackTrace();
+		}
+		
 	}
 	
-	public void readById(Customer c) {
-		printData("SELECT * FROM customer where id = " + c.getId() + ";");
+	public void readCust() {
+		printCustData("SELECT * FROM customer;");
+	}
+	public void readProd() {
+		printProdData("SELECT * FROM product;");
+	}
+	public void readCustById(Customer c) {
+		printCustData("SELECT * FROM customer where id = " + c.getId() + ";");
+	}
+	public void readProdById(Product p) {
+		printProdData("SELECT * FROM product where id = " + p.getId() + ";");
+	}
+	public void readCustByName(Customer c) {
+		printCustData("SELECT * FROM customer where first_name = '" + c.getFirstName() + "';");
+	}
+	public void readProdByCat(Product p) {
+		printProdData("SELECT * FROM product where category = '" + p.getCategory() + "';");
 	}
 	
-	public void readByName(Customer c) {
-		printData("SELECT * FROM customer where first_name = '" + c.getFirstName() + "';");
-	}
 	
-	// UPDATE - UPDATE ..... -> executeUpdate
 	@Override
 	public void update(Customer c, String updateVal) {
 		updateData("UPDATE customer SET first_name = '" + updateVal + "' WHERE id = " + c.getId() + ";", "Update");
 	}
-	
 	@Override
 	public void update(Product p, String updateVal) {
 		updateData("UPDATE product SET name = '" + updateVal + "' WHERE id = " + p.getId() + ";", "Update");
 	}
 	
-	// DELETE - DELETE ..... -> executeUpdate
+	
 	@Override
 	public void delete(Customer c) {
 		updateData("DELETE FROM customer WHERE id=" + c.getId() + ";", "Delete");
 		autoInc("customer");
 	}
-	
 	@Override
 	public void delete(Product p) {
 		updateData("DELETE FROM product WHERE id=" + p.getId() + ";", "Delete");
 		autoInc("product");
 	}
 	
+	
 	//Resets the auto increment in the customer table so ID's are organised if a customer is deleted.
 	public void autoInc(String tableName) {
-		updateData("ALTER TABLE " + tableName + " AUTO_INCREMENT=1;", "");
+		updateData("ALTER TABLE " + tableName + " AUTO_INCREMENT=1;", "Reset ID");
 	}
+	
 	
 	// close the connection
 	public void closeConn() {

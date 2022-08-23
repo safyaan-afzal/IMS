@@ -9,20 +9,15 @@ public class CustomerChoice extends ParentClass {
 	
 	@Override
 	public void create(CRUDqueries q) {
-		System.out.println("Enter first name: ");
-		String fName = sc.nextLine();
+		String fName = getInput("first name");
 		cust.setFirstName(fName);
-		System.out.println("Enter last name: ");
-		String lName = sc.nextLine();
+		String lName = getInput("last name");
 		cust.setLastName(lName);
-		System.out.println("Enter address: ");
-		String address = sc.nextLine();
-		cust.setAddress(address);
-		System.out.println("Enter email: ");
-		String email = sc.nextLine();
+		String email = getInput("email");
 		cust.setEmail(email);
-		System.out.println("Enter phone: ");
-		String phone = sc.nextLine();
+		String address = getInput("address");
+		cust.setAddress(address);
+		String phone = getInput("phone");
 		cust.setPhone(phone);
 		q.create(cust);
 		
@@ -30,21 +25,17 @@ public class CustomerChoice extends ParentClass {
 	
 	@Override
 	public void read(CRUDqueries q) {
-		System.out.println("1. Read all\n2. Read by id\n3. Read by name");
-		String readChoice = sc.nextLine();
+		String readChoice = getInput("\n1. Read all\n2. Read by id\n3. Read by name");
 		if (readChoice.toLowerCase().equals("1")) {
-			q.read();
+			q.readCust();
 		} else if (readChoice.toLowerCase().equals("2")) {
-			System.out.println("Enter ID: ");
-			int rID = sc.nextInt();
+			int rID = Integer.parseInt(getInput("ID"));
 			cust.setId(rID);
-			sc.nextLine();
-			q.readById(cust);
+			q.readCustById(cust);
 		} else if (readChoice.toLowerCase().equals("3")) {
-			System.out.println("Enter Name: ");
-			String rName = sc.nextLine();
+			String rName = getInput("name");
 			cust.setFirstName(rName);
-			q.readByName(cust);
+			q.readCustByName(cust);
 			
 		} else {
 			System.out.println("Invalid Entry");
@@ -54,24 +45,17 @@ public class CustomerChoice extends ParentClass {
 	
 	@Override
 	public void update(CRUDqueries q) {
-		System.out.println("Enter id of record to update: ");
-		int uID = sc.nextInt();
+		int uID = Integer.parseInt(getInput("id of record to update"));
 		cust.setId(uID);
-		sc.nextLine();//capture enter key
-		System.out.println("Enter the new first name of the customer: ");
-		String uName = sc.nextLine();
+		String uName = getInput("the new first name of the customer");
 		q.update(cust, uName);	
-		
 	}
 
 	@Override
 	public void delete(CRUDqueries q) {
-		System.out.println("Enter id of record to delete: ");
-		int dID = sc.nextInt();
-		sc.nextLine();//capture enter key
+		int dID = Integer.parseInt(getInput("id of record to delete"));
 		cust.setId(dID);
 		q.delete(cust);
-		
 	}
 	
 

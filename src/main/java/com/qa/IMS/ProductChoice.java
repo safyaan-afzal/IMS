@@ -1,24 +1,18 @@
 package com.qa.IMS;
 
 import java.math.BigDecimal;
-import java.util.Scanner;
 
 public class ProductChoice extends ParentClass {
 	
-	private static Scanner sc = new Scanner(System.in);
 	Product prod = new Product();
 
 	@Override
 	public void create(CRUDqueries q) {
-		System.out.println("Enter name: ");
-		String pName = sc.nextLine();
+		String pName = getInput("name");
 		prod.setName(pName);
-		System.out.println("Enter category: ");
-		String cat = sc.nextLine();
-		prod.setCategory(cat);;
-		System.out.println("Enter price: ");
-		BigDecimal price = sc.nextBigDecimal();
-		sc.nextLine();
+		String cat = getInput("category");
+		prod.setCategory(cat);
+		BigDecimal price = new BigDecimal(getInput("price"));
 		prod.setPrice(price);
 		q.create(prod);
 		
@@ -26,18 +20,35 @@ public class ProductChoice extends ParentClass {
 
 	@Override
 	public void read(CRUDqueries q) {
-		// TODO Auto-generated method stub
+		String readChoice = getInput("\n1. Read all\n2. Read by id\n3. Read by category");
+		if (readChoice.toLowerCase().equals("1")) {
+			q.readProd();
+		} else if (readChoice.toLowerCase().equals("2")) {
+			int rID = Integer.parseInt(getInput("ID"));
+			prod.setId(rID);
+			q.readProdById(prod);
+		} else if (readChoice.toLowerCase().equals("3")) {
+			String rCat = getInput("category");
+			prod.setCategory(rCat);
+			q.readProdByCat(prod);
+		} else {
+			System.out.println("Invalid Entry");
+		}
 	}
 
 	@Override
 	public void update(CRUDqueries q) {
-		// TODO Auto-generated method stub
-		
+		int uID = Integer.parseInt(getInput("id of record to update"));
+		prod.setId(uID);
+		String uName = getInput("the new name of the product");
+		q.update(prod, uName);	
 	}
 
 	@Override
 	public void delete(CRUDqueries q) {
-		// TODO Auto-generated method stub
+		int dID = Integer.parseInt(getInput("ID of record to delete"));
+		prod.setId(dID);
+		q.delete(prod);
 		
 	}
 	

@@ -14,8 +14,8 @@ public abstract class ParentClass {
 	
 	public abstract void delete(CRUDqueries q);
 	
-	public String getInput() {
-		System.out.println("Enter CRUD choice: ");
+	public String getInput(String text) {
+		System.out.println("\nEnter " + text + ": ");
 		return sc.nextLine();
 	}
 	
@@ -23,7 +23,7 @@ public abstract class ParentClass {
 		// create an instance of the CRUD queries class to open the connection
 		CRUDqueries q = new CRUDqueries();
 		
-		String crud = getInput();
+		String crud = getInput("CRUD choice");
 
 		// try-finally block so the finally block can close the connection
 		try {
@@ -50,7 +50,7 @@ public abstract class ParentClass {
 				System.out.println("\nWould you like to continue? (y/n)");
 				String quit = sc.nextLine();
 				if (quit.toLowerCase().equals("y")) {
-					crud = getInput();
+					crud = getInput("CRUD choice");
 				} else if (quit.toLowerCase().equals("n")) {
 					crud = "quit";
 				} else {
