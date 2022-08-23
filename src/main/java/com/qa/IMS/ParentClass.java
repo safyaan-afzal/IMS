@@ -62,7 +62,5 @@ public abstract class ParentClass {
 		} finally {
 			q.closeConn();
 		}
-
-	
-
+	}
 }

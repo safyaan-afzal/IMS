@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class CRUDqueries {
+public class CRUDqueries implements Create, Update, Delete {
 
 	// To carry out CRUD queries - where we connect to the the db
 	// Four main things needed:
@@ -30,28 +30,31 @@ public class CRUDqueries {
 			e.printStackTrace();
 		}
 	}
+	
+	public void updateData(String updateStmt, String stmtType) {
+		try {
+			stmt.executeUpdate(updateStmt);
+			System.out.println(stmtType+ " statement executed");
+		} catch (SQLException e) {
+			System.out.println("Bad query");
+			e.printStackTrace();
+		}
+	}
 
-	// Need a way to run our queries - call specific methods from the Statement
-	// class
-	// - executeQuery - retrieves info -> READ
-	// - executeUpdate - passes into through and returns nothing -> CREATE, UPDATE,
-	// DELETE
-
-	// CREATE - INSERT INTO .... -> returns nothing, just says "query ok"
+	@Override
 	public void create(Customer c) {
 
-			String createStmt = "INSERT INTO customer(first_name, last_name, address, email, phone) VALUES('" + c.getFirstName() + "','" + c.getLastName()
-					+ "','" + c.getAddress() + "','" + c.getEmail() + "','" + c.getPhone() + "');";
-			try {
-				stmt.executeUpdate(createStmt);
-				System.out.println("Create statement executed");
-			} catch (SQLException e) {
-				System.out.println("Bad query");
-				e.printStackTrace();
-			}
+			updateData("INSERT INTO customer(first_name, last_name, address, email, phone) VALUES('" + c.getFirstName() + "','" + c.getLastName()
+					+ "','" + c.getAddress() + "','" + c.getEmail() + "','" + c.getPhone() + "');", "create");
 		}
 	
-	
+	@Override
+	public void create(Product p) {
+		
+		updateData("INSERT INTO product(name, category, price) VALUES('" + p.getName() + "','" + p.getCategory()
+		+ "'," + p.getPrice() + ");", "create");
+	}
+
 	public void printData(String readByIDStmt) {
 		try {
 			rs = stmt.executeQuery(readByIDStmt);
@@ -84,61 +87,34 @@ public class CRUDqueries {
 	}
 	
 	// UPDATE - UPDATE ..... -> executeUpdate
+	@Override
 	public void update(Customer c, String updateVal) {
-		String updateStmt = "UPDATE customer SET first_name = '" + updateVal + "' WHERE id = " + c.getId() + ";";
-		try {
-			stmt.executeUpdate(updateStmt);
-			System.out.println("Update statement executed");
-			
-		}catch (SQLException e) {
-			System.out.println("Bad query");
-			e.printStackTrace();
-		}
-
+		updateData("UPDATE customer SET first_name = '" + updateVal + "' WHERE id = " + c.getId() + ";", "Update");
+	}
+	
+	@Override
+	public void update(Product p, String updateVal) {
+		updateData("UPDATE product SET name = '" + updateVal + "' WHERE id = " + p.getId() + ";", "Update");
 	}
 	
 	// DELETE - DELETE ..... -> executeUpdate
+	@Override
 	public void delete(Customer c) {
-		String delStmt = "DELETE FROM customer WHERE id=" + c.getId() + ";";
-		try {
-			stmt.executeUpdate(delStmt);
-			System.out.println("Delete statement executed");
-			autoInc();
-		} catch (SQLException e) {
-			System.out.println("Bad query");
-			e.printStackTrace();
-		}
-
+		updateData("DELETE FROM customer WHERE id=" + c.getId() + ";", "Delete");
+		autoInc("customer");
+	}
+	
+	@Override
+	public void delete(Product p) {
+		updateData("DELETE FROM product WHERE id=" + p.getId() + ";", "Delete");
+		autoInc("product");
 	}
 	
 	//Resets the auto increment in the customer table so ID's are organised if a customer is deleted.
-	public void autoInc() {
-		String autoIncStmt = "ALTER TABLE customer AUTO_INCREMENT=1;";
-		try {
-			stmt.executeUpdate(autoIncStmt);
-			System.out.println("Auto increment statement executed");
-			
-		}catch (SQLException e) {
-			System.out.println("Bad query");
-			e.printStackTrace();
-		}
-
+	public void autoInc(String tableName) {
+		updateData("ALTER TABLE " + tableName + " AUTO_INCREMENT=1;", "");
 	}
 	
-	public void create(Product p) {
-		
-		String createStmt = "INSERT INTO product(name, category, price) VALUES('" + p.getName() + "','" + p.getCategory()
-		+ "'," + p.getPrice() + ");";
-		try {
-			stmt.executeUpdate(createStmt);
-			System.out.println("Create statement executed");
-		} catch (SQLException e) {
-			System.out.println("Bad query");
-			e.printStackTrace();
-		}
-	}
-	
-
 	// close the connection
 	public void closeConn() {
 		try {
@@ -149,7 +125,5 @@ public class CRUDqueries {
 			e.printStackTrace();
 		}
 	}
-
-
 
 }

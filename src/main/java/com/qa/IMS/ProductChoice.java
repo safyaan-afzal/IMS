@@ -27,7 +27,6 @@ public class ProductChoice extends ParentClass {
 	@Override
 	public void read(CRUDqueries q) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
