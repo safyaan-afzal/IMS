@@ -22,8 +22,8 @@ public class Menu {
 				startCust.options();
 				break;
 			case "2":
-				ProductChoice startAlt = new ProductChoice();
-				startAlt.options();
+				ProductChoice startProd = new ProductChoice();
+				startProd.options();
 				break;
 			default:
 				System.out.println("Invalid CRUD choice");	

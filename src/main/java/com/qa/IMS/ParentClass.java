@@ -1,7 +1,10 @@
 package com.qa.IMS;
 
+import java.util.Scanner;
+
 public abstract class ParentClass {
 	
+	private static Scanner sc = new Scanner(System.in);
 	
 	public abstract void create(CRUDqueries q);
 	
