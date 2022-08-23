@@ -46,16 +46,22 @@ public class Choice {
 					q.create(cust);
 					break;
 				case "read":
-					System.out.println("Read everything? (Y/N)");
+					System.out.println("1. Read all\n2. Read by id\n3. Read by name");
 					String readChoice = sc.nextLine();
-					if (readChoice.toLowerCase().equals("y")) {
+					if (readChoice.toLowerCase().equals("1")) {
 						q.read();
-					} else if (readChoice.toLowerCase().equals("n")) {
+					} else if (readChoice.toLowerCase().equals("2")) {
 						System.out.println("Enter ID: ");
 						int rID = sc.nextInt();
 						cust.setId(rID);
 						sc.nextLine();
 						q.readById(cust);
+					} else if (readChoice.toLowerCase().equals("3")) {
+						System.out.println("Enter Name: ");
+						String rName = sc.nextLine();
+						cust.setFirstName(rName);
+						q.readByName(cust);
+						
 					} else {
 						System.out.println("Invalid Entry");
 					}	

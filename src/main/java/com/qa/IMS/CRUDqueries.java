@@ -90,6 +90,25 @@ public class CRUDqueries {
 		}
 	}
 	
+	public void readByName(Customer c) {
+		String readByNameStmt = "SELECT * FROM customer where first_name = '" + c.getFirstName() + "';";
+		try {
+			rs = stmt.executeQuery(readByNameStmt);
+			while (rs.next()) {
+				System.out.println("ID: " + rs.getInt("id"));
+				System.out.println("First name: " + rs.getString("first_name"));
+				System.out.println("Last name: " + rs.getString("last_name"));
+				System.out.println("Address: " + rs.getString("address"));
+				System.out.println("Email: " + rs.getString("email"));
+				System.out.println("Phone: " + rs.getString("phone"));
+			}
+
+		} catch (SQLException e) {
+			System.out.println("Bad query");
+			e.printStackTrace();
+		}
+	}
+	
 	// UPDATE - UPDATE ..... -> executeUpdate
 	public void update(Customer c, String updateVal) {
 		String updateStmt = "UPDATE customer SET first_name = '" + updateVal + "' WHERE id = " + c.getId() + ";";
@@ -116,6 +135,7 @@ public class CRUDqueries {
 		}
 
 	}
+	
 
 	// close the connection
 	public void closeConn() {
