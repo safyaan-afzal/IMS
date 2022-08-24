@@ -2,6 +2,9 @@ package com.qa.IMS;
 
 import java.util.Scanner;
 
+import com.qa.Customer.CustomerChoice;
+import com.qaProduct.ProductChoice;
+
 public class Menu {
 	
 	private static Scanner sc = new Scanner(System.in);

@@ -2,6 +2,8 @@ package com.qa.IMS;
 
 import java.util.Scanner;
 
+import com.qa.CRUDqueries.CRUDqueries;
+
 public abstract class ParentChoice {
 	
 	private static Scanner sc = new Scanner(System.in);

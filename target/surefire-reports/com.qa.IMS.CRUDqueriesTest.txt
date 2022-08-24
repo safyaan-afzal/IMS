@@ -1,0 +1,49 @@
+-------------------------------------------------------------------------------
+Test set: com.qa.IMS.CRUDqueriesTest
+-------------------------------------------------------------------------------
+Tests run: 9, Failures: 9, Errors: 0, Skipped: 0, Time elapsed: 0.002 sec <<< FAILURE!
+com.qa.IMS.CRUDqueriesTest.testReadCustById()  Time elapsed: 0.001 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at com.qa.IMS.CRUDqueries.readCustById(CRUDqueries.java:97)
+	at com.qa.IMS.CRUDqueriesTest.testReadCustById(CRUDqueriesTest.java:65)
+
+com.qa.IMS.CRUDqueriesTest.testUpdateCustomer()  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at com.qa.IMS.CRUDqueries.update(CRUDqueries.java:115)
+	at com.qa.IMS.CRUDqueriesTest.testUpdateCustomer(CRUDqueriesTest.java:82)
+
+com.qa.IMS.CRUDqueriesTest.testCreateProduct()  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at com.qa.IMS.CRUDqueries.create(CRUDqueries.java:48)
+	at com.qa.IMS.CRUDqueriesTest.testCreateProduct(CRUDqueriesTest.java:59)
+
+com.qa.IMS.CRUDqueriesTest.testReadProdById()  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at com.qa.IMS.CRUDqueries.readProdById(CRUDqueries.java:101)
+	at com.qa.IMS.CRUDqueriesTest.testReadProdById(CRUDqueriesTest.java:69)
+
+com.qa.IMS.CRUDqueriesTest.testDeleteCustomer()  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at com.qa.IMS.CRUDqueries.delete(CRUDqueries.java:125)
+	at com.qa.IMS.CRUDqueriesTest.testDeleteCustomer(CRUDqueriesTest.java:95)
+
+com.qa.IMS.CRUDqueriesTest.testUpdateProduct()  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at com.qa.IMS.CRUDqueries.update(CRUDqueries.java:119)
+	at com.qa.IMS.CRUDqueriesTest.testUpdateProduct(CRUDqueriesTest.java:88)
+
+com.qa.IMS.CRUDqueriesTest.testDeleteProduct()  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at com.qa.IMS.CRUDqueries.delete(CRUDqueries.java:130)
+	at com.qa.IMS.CRUDqueriesTest.testDeleteProduct(CRUDqueriesTest.java:101)
+
+com.qa.IMS.CRUDqueriesTest.testReadCustByName()  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at com.qa.IMS.CRUDqueries.readCustByName(CRUDqueries.java:105)
+	at com.qa.IMS.CRUDqueriesTest.testReadCustByName(CRUDqueriesTest.java:73)
+
+com.qa.IMS.CRUDqueriesTest.testCreateCustomer()  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at com.qa.IMS.CRUDqueries.create(CRUDqueries.java:42)
+	at com.qa.IMS.CRUDqueriesTest.testCreateCustomer(CRUDqueriesTest.java:53)
+
