@@ -7,4 +7,6 @@ The system consist of Databse configuration, main menu, products & customer quer
 I have also peformed unit testing on the programming in order to achieve 60% test coverage.
 The classes which have been tested include CRUDqueries, Product & Customer.
 
+![image](https://user-images.githubusercontent.com/110388393/186409108-c0450a18-dbdc-41cd-a14b-a831d6e6d017.png)
+
 
