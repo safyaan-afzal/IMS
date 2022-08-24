@@ -14,6 +14,8 @@ These tests were preventing the creation of a jar file hence they have been comm
 Please see the images below in order to see the tasks that were completed during the development of the project.
 
 ![image](https://user-images.githubusercontent.com/110388393/186409108-c0450a18-dbdc-41cd-a14b-a831d6e6d017.png)
-![image](https://user-images.githubusercontent.com/110388393/186409874-8f2879f2-7c47-48b7-9675-e7995809b84c.png)
+![image](https://user-images.githubusercontent.com/110388393/186474419-c54d9d0a-6237-494d-a6fc-61153f9513b7.png)
+
+The only tasks remaining is to create a gitignore file.
 
 
