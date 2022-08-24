@@ -2,7 +2,7 @@ package com.qa.IMS;
 
 import java.util.Scanner;
 
-public abstract class ParentClass {
+public abstract class ParentChoice {
 	
 	private static Scanner sc = new Scanner(System.in);
 	

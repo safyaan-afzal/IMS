@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class CRUDqueries implements Create, Update, Delete {
+public class CRUDqueries implements Create, Read, Update, Delete {
 
 	private Connection conn;// has a driver manager class which contains the methods to connect to db
 	private Statement stmt;// allows us to prepare the query we want to execute
@@ -84,21 +84,27 @@ public class CRUDqueries implements Create, Update, Delete {
 		
 	}
 	
+	@Override
 	public void readCust() {
 		printCustData("SELECT * FROM customer;");
 	}
+	@Override
 	public void readProd() {
 		printProdData("SELECT * FROM product;");
 	}
+	@Override
 	public void readCustById(Customer c) {
 		printCustData("SELECT * FROM customer where id = " + c.getId() + ";");
 	}
+	@Override
 	public void readProdById(Product p) {
 		printProdData("SELECT * FROM product where id = " + p.getId() + ";");
 	}
+	@Override
 	public void readCustByName(Customer c) {
 		printCustData("SELECT * FROM customer where first_name = '" + c.getFirstName() + "';");
 	}
+	@Override
 	public void readProdByCat(Product p) {
 		printProdData("SELECT * FROM product where category = '" + p.getCategory() + "';");
 	}

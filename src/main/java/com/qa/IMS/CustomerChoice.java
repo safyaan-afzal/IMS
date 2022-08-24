@@ -2,7 +2,7 @@ package com.qa.IMS;
 
 import java.util.Scanner;
 
-public class CustomerChoice extends ParentClass {
+public class CustomerChoice extends ParentChoice {
 
 	private static Scanner sc = new Scanner(System.in);
 	Customer cust = new Customer();

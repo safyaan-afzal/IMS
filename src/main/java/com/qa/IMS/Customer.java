@@ -7,33 +7,32 @@ public class Customer {
 	private int id;
 	private String firstName;
 	private String lastName;
-	private String address;
 	private String email;
+	private String address;
 	private String phone;
-	
-	
+
+
 	public Customer() {
 		super();
 	}
-
-
-	public Customer(int id, String firstName, String lastName, String address, String email, String phone) {
+	
+	
+	public Customer(int id, String firstName, String lastName, String email, String address, String phone) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.address = address;
 		this.email = email;
+		this.address = address;
 		this.phone = phone;
 	}
 
-
-	public Customer(String firstName, String lastName, String address, String email, String phone) {
+	public Customer(String firstName, String lastName, String email, String address, String phone) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.address = address;
 		this.email = email;
+		this.address = address;
 		this.phone = phone;
 	}
 

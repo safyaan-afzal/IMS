@@ -2,7 +2,7 @@ package com.qa.IMS;
 
 import java.math.BigDecimal;
 
-public class ProductChoice extends ParentClass {
+public class ProductChoice extends ParentChoice {
 	
 	Product prod = new Product();
 
